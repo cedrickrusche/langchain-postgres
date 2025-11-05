@@ -1371,6 +1371,16 @@ class AsyncPGVectorStore(VectorStore):
         else:
             return "", {}
 
+    def get(
+        self,
+        filter: Optional[dict] = None,
+        k: Optional[int] = None,
+        **kwargs: Any,
+    ) -> list[Document]:
+        raise NotImplementedError(
+            "Sync methods are not implemented for AsyncPGVectorStore. Use PGVectorStore interface instead."
+        )
+
     def get_by_ids(self, ids: Sequence[str]) -> list[Document]:
         raise NotImplementedError(
             "Sync methods are not implemented for AsyncPGVectorStore. Use PGVectorStore interface instead."
