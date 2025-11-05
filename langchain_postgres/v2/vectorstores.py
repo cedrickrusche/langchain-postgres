@@ -886,6 +886,22 @@ class PGVectorStore(VectorStore):
         k: Optional[int] = None,
         **kwargs: Any,
     ) -> list[Document]:
+        """
+        Asynchronously retrieves documents from a collection based on an optional filter and other parameters.
+
+        This method queries the underlying collection using the provided filter and additional keyword arguments.
+        It constructs a list of `Document` objects from the query results, combining content and metadata from
+        specified columns.
+
+        Args:
+            filter (Optional[dict]): A dictionary specifying filtering criteria for the query. Defaults to None.
+            k (Optional[int]): The maximum number of documents to retrieve. If None, retrieves all matching documents.
+            **kwargs (Any): Additional keyword arguments passed to the internal query method.
+
+        Returns:
+            list[Document]: A list of `Document` instances, each containing content, metadata, and an identifier.
+
+        """
 
         return await self._engine._run_as_async(
             self.__vs.aget(filter=filter, k=k, **kwargs)
